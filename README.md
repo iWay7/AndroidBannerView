@@ -5,7 +5,7 @@ Android 无限循环轮播图。
 
 ![image](https://github.com/iWay7/AndroidBannerView/blob/master/sample.gif)   
 
-### 本示例基于 AndroidHelpers/BitmapCache 库，访问 https://github.com/iWay7/BitmapCache 添加依赖。
+### 本示例基于 AndroidHelpers/BitmapCache 库，访问 https://github.com/iWay7/AndroidBitmapCache 添加依赖。
 
 #### 使用方法：
 ##### 在布局文件中声明一个 BannerView 视图：
