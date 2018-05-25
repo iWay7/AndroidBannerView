@@ -4,6 +4,9 @@ import android.app.Activity;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.View.OnLongClickListener;
+import android.widget.Toast;
 
 import site.iway.androidhelpers.BannerView;
 import site.iway.androidhelpers.BitmapSource;
@@ -36,5 +39,19 @@ public class MainActivity extends Activity {
             }
         });
         bannerView.setBitmapSources(bitmapSources);
+        bannerView.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(MainActivity.this, "Clicked", Toast.LENGTH_SHORT).show();
+            }
+        });
+        bannerView.setOnLongClickListener(new OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                Toast.makeText(MainActivity.this, "LongClicked", Toast.LENGTH_SHORT).show();
+                return true;
+            }
+        });
+
     }
 }
