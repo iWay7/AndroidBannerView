@@ -13,10 +13,13 @@ Android 无限循环轮播图。
 <site.iway.androidhelpers.BannerView
     android:id="@+id/banner"
     android:layout_width="match_parent"
-    android:layout_height="220dp" />
+    android:layout_height="220dp"
+    app:autoNextTime="3000"
+    app:willPreloadNextPage="true"
+    app:clickDetectRadius="5dp"/>
 ```
 
-##### 然后给这个 BannerView 设置来源和自动循环时间等：
+##### 然后给这个 BannerView 设置来源和一些属性等：
 ```
 BitmapSource[] bitmapSources = new BitmapSource[5];
 for (int i = 0; i < bitmapSources.length; i++) {
@@ -35,26 +38,20 @@ bannerView.initializeBitmapViews(new ViewProcessor() {
     }
 });
 bannerView.setBitmapSources(bitmapSources); // 设定来源
-bannerView.setAutoNextTime(3000); // 设定循环时间
-bannerView.setBannerIndexChangedListener(...); // 设定监听器
+bannerView.setAutoNextTime(...); // 设定自动下一页时间，也可在布局文件中配置
+bannerView.setClickDetectRadius(...); // 设置 click 事件触摸半径，以像素为单位，也可在布局文件中配置
+bannerView.setWillPreloadNext(...); // 设置是否进行预加载下一页，也可在布局文件中配置
+bannerView.addRequestDisallowInterceptTouchEventViewGroup(...); // 添加 RequestDisallowInterceptTouchEvent 视图，通常用于 Banner 在 ViewPager 或者 ScrollView 内部的的时候使用
+bannerView.removeRequestDisallowInterceptTouchEventViewGroup(...); // 移除 RequestDisallowInterceptTouchEvent 视图
+bannerView.clearRequestDisallowInterceptTouchEventViewGroups(...); // 清空 RequestDisallowInterceptTouchEvent 视图
+bannerView.setBannerIndexChangedListener(...); // 设置自动切换页面时的回调
+bannerView.getCurrentIndex(); // 获取原始的 Index 值，一般用不到
+bannerView.getRealIndex(); // 获取正在展示的 BitmapSource 的 Index 值
 ```
 
-##### BannerIndexChangedListener 回调 index 是原始的，可以根据以下方式计算真实数据：
+##### 可以在布局二五年间中配置的属性：
 ```
-private int computeBannerIndex(int rawIndex) {
-    int offset = rawIndex % bitmapSources.length;
-    if (rawIndex > 0)
-        return offset;
-    else if (rawIndex < 0)
-        return bitmapSources.length + offset;
-    else
-        return 0;
-}
-```
-
-##### 由于内部 index 是实时计算的，所以在布局之前完成查询当前 index 会产生错误，这种情况应单独判断：
-```
-if (bannerView.getWidth() > 0) {
-    bannerIndex = bannerView.getCurrentIndex();
-}
+app:autoNextTime 自动下一页的时间间隔
+app:willPreloadNextPage 下一页是否预加载
+app:clickDetectRadius 设置 click 事件触摸半径
 ```

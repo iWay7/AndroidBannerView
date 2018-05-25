@@ -5,8 +5,6 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
 
-import java.io.File;
-
 import site.iway.androidhelpers.BannerView;
 import site.iway.androidhelpers.BitmapSource;
 import site.iway.androidhelpers.BitmapSourceURL;
@@ -38,7 +36,5 @@ public class MainActivity extends Activity {
             }
         });
         bannerView.setBitmapSources(bitmapSources);
-        bannerView.setAutoNextTime(3000);
-        bannerView.setBannerIndexChangedListener(null);
     }
 }
