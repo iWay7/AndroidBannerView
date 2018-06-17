@@ -10,7 +10,6 @@ import android.widget.Toast;
 
 import site.iway.androidhelpers.BannerView;
 import site.iway.androidhelpers.BitmapSource;
-import site.iway.androidhelpers.BitmapSourceURL;
 import site.iway.androidhelpers.BitmapView;
 import site.iway.androidhelpers.ViewProcessor;
 import site.iway.javahelpers.Scale;
@@ -22,10 +21,10 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        BitmapSource[] bitmapSources = new BitmapSource[5];
+        BitmapSource[] bitmapSources = new BitmapSource[8];
         for (int i = 0; i < bitmapSources.length; i++) {
             String url = "http://home.iway.site:8888/test/images/image%20(" + (i + 1) + ").jpg";
-            bitmapSources[i] = new BitmapSourceURL(url, null);
+            bitmapSources[i] = new BitmapSource(BitmapSource.TYPE_URL, url, null);
         }
 
         BannerView bannerView = (BannerView) findViewById(R.id.banner);
